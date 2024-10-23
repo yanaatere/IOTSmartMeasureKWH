@@ -1,6 +1,8 @@
 package tenantentity
 
-import "time"
+import (
+	"time"
+)
 
 type Tenant struct {
 	TenantID   int       `gorm:"primaryKey;autoIncrement" json:"tenant_id"`
@@ -25,7 +27,7 @@ type TenantData struct {
 	UpdatedAt  string `json:"updated_at"`
 }
 
-type TenantRequest struct {
+type FindTenant struct {
 	TenantID   string `json:"tenant_id"`
 	TenantName string `json:"tenant_name"`
 	Address    string `json:"address"`
@@ -33,10 +35,8 @@ type TenantRequest struct {
 	UpdatedAt  string `json:"updated_at"`
 }
 
-type FindTenant struct {
-	TenantID   string `json:"tenant_id"`
+type UpdateTenant struct {
 	TenantName string `json:"tenant_name"`
 	Address    string `json:"address"`
-	CreatedAt  string `json:"created_at"`
 	UpdatedAt  string `json:"updated_at"`
 }
