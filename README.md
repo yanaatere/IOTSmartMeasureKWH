@@ -7,7 +7,7 @@ This repository contains the backend for the **IoT Smart Measure KWH** project. 
 - [Features](#features)
 - [API Endpoints](#api-endpoints)
   - [Authentication APIs](#authentication-apis)
-  - [Hotel Management APIs](#hotel-management-apis)
+  - [Tenant Management APIs](#tenant-management-apis)
   - [Section Management APIs](#section-management-apis)
   - [Room Management APIs](#room-management-apis)
   - [Device Management APIs](#device-management-apis)
@@ -18,7 +18,7 @@ This repository contains the backend for the **IoT Smart Measure KWH** project. 
 
 ## Features
 - User Authentication (Login, Register, Logout, Forgot Password)
-- Hotel, Section (Floor), and Room management
+- Tenant, Section (Floor), and Room management
 - IoT Device management for monitoring KWH usage
 - Real-time and historical KWH data tracking
 
