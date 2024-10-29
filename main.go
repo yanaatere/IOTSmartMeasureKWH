@@ -20,8 +20,8 @@ func main() {
 	models.OpenDatabaseConnectionUsingURL()
 	log.Println("Database connection established ...")
 
-	models.AutoMigrateModels()
-	log.Println("Database Models Migrated successfully")
+	/*models.AutoMigrateModels()
+	log.Println("Database Models Migrated successfully")*/
 
 	router := routes.SetupRoutes()
 	log.Println("Routes Configured")

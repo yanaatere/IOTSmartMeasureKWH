@@ -38,5 +38,4 @@ type FindTenant struct {
 type UpdateTenant struct {
 	TenantName string `json:"tenant_name"`
 	Address    string `json:"address"`
-	UpdatedAt  string `json:"updated_at"`
 }

@@ -8,11 +8,11 @@ import (
 func tenantGroupRouter(baseRouter *gin.RouterGroup) {
 	tenant := baseRouter.Group("/tenant")
 
-	//tenant.GET("/all", controllers.GetAllStartups)
-	//tenant.GET("/get/:id", controllers.GetStartupByID)
+	tenant.POST("/all/page/:page/size/:size", controllers.GetAllTenants)
+	tenant.GET("/get/:id", controllers.GetTenantByID)
 	tenant.POST("/create", controllers.CreateNewTenant)
 	tenant.PATCH("/update/:id", controllers.UpdateTenantByID)
-	//tenant.DELETE("/delete/:id", controllers.DeleteStartup)
+	tenant.DELETE("/delete/:id", controllers.DeleteTenantByID)
 }
 
 func SetupRoutes() *gin.Engine {
