@@ -1,26 +1,25 @@
 package repository
 
 import (
+	"github.com/retere/IOTSmartMeasureKWH/entity/tenantentity"
 	"github.com/retere/IOTSmartMeasureKWH/models"
 )
 
 type Tenants struct {
-	TenantID   string `gorm:"primaryKey" json:"tenant_id"`
+	TenantID   string `json:"tenant_id"`
 	TenantName string `json:"tenant_name"`
 	Address    string `json:"address"`
-	CreatedAt  string `json:"created_at"`
-	UpdatedAt  string `json:"updated_at"`
 }
 
-func (tenant *Tenants) Save() (*Tenants, error) {
-	err := models.Database.Model(&tenant).Create(&tenant).Error
+func SaveTenants(tenant *tenantentity.UpdateTenant) error {
+	err := models.Database.Table("tenants").Create(&tenant).Error
 	if err != nil {
-		return &Tenants{}, err
+		return err
 	}
-	return tenant, nil
+	return nil
 }
 
-func SaveExistingTenant(tenant *Tenants, tenantID string) error {
+func SaveExistingTenant(tenant *tenantentity.Tenants, tenantID string) error {
 	result := models.Database.Model(&Tenants{}).Where("tenant_id = ?", tenantID).Updates(tenant)
 
 	if result.Error != nil {
@@ -30,10 +29,32 @@ func SaveExistingTenant(tenant *Tenants, tenantID string) error {
 	return nil
 }
 
-func FindTenantByID(tenantID string, tenant *Tenants) error {
+func FindTenantByID(tenantID string, tenant *tenantentity.Tenants) error {
 	result := models.Database.Where("tenant_id = ?", tenantID).First(tenant)
 	if result.Error != nil {
 		return result.Error
 	}
 	return nil
+}
+
+func DeleteById(tenantId string, tenant *Tenants) error {
+	result := models.Database.Where("tenant_id = ?", tenantId).Delete(tenant)
+
+	if result.Error != nil {
+		return result.Error
+	}
+
+	return nil
+}
+
+func FindAllTenants(page int, pageSize int) ([]Tenants, error) {
+	offset := (page - 1) * pageSize
+
+	var tenants []Tenants
+	result := models.Database.Limit(pageSize).Offset(offset).Find(&tenants)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return tenants, nil
 }
