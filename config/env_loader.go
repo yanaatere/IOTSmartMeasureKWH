@@ -6,7 +6,8 @@ import (
 )
 
 func LoadEnv() {
-	err := godotenv.Load("D:\\Private Study\\IOTSmartMeasureKWH\\config\\.env")
+	//err := godotenv.Load("D:\\Private Study\\IOTSmartMeasureKWH\\config\\.env")
+	err := godotenv.Load("config/.env")
 	if err != nil {
 		panic(fmt.Sprintf("Error loading .env file: %v", err)) // Include the actual error message
 	} else {
